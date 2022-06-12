@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <style>
+            #common_btn
+            {
+                color:black;
+                border: solid 1px;
+                height: 100px;
+                width: 100px
+            }
+            #big_btn
+            {
+                color:black;
+                border: solid 1px;
+                height: 100px;
+                width: 200px
+            }
+            #screen
+            {
+                color:black;
+                border: solid 1px;
+                height: 200px;
+                width: 400px;
+            }
+            #input
+            {
+                height:100%;
+                width:100%;
+                font-size:x-large;
+                background-color: gray;
+            }
+        </style>
+        <script>
+
+        </script>
+    </head>
+    <body>
+        <h3>
+            2022112022-임희성[정보통신공학전공]<br>
+            2017112048-정재성[전자전기공학부]
+        </h3>
+        <p>밑으로 스크롤 하시면 계산기 전체가 보입니다.</p>
+        <table style="border: solid 1px; height: 700px; width:400px; background-color: burlywood;">
+            <tr>
+                <td id="screen" colspan = "4" style="background-color: burlywood;">
+                    <input type="text" value="0" id ="resultFld" style=" text-align: right; font-size:60px; height:80%; width:80%; margin: 9%;">
+                </td>
+            </tr>
+            <tr>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="7" onclick="btn_click(7)">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="8" onclick="btn_click(8)">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="9" onclick="btn_click(9)">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="/" onclick="operator('/')">
+                </td>
+            </tr>
+            <tr>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="4" onclick="btn_click(4)">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="5" onclick="btn_click(5)">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="6" onclick="btn_click(6)">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="*" onclick="operator('*')">
+                </td>
+            </tr>
+            <tr>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="1" onclick="btn_click(1)">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="2" onclick="btn_click(2)">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="3" onclick="btn_click(3)">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="-" onclick="operator('-')">
+                </td>
+            </tr>
+            <tr>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="0" onclick="btn_click(0)">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="." onclick="btn_click('.')">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="+" onclick="operator('+')">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="%" onclick="operator('%')">
+                </td>
+            </tr>
+            <tr>
+                <td id ="big_btn" colspan="2">
+                    <input id ="input" type="button" value="calculate" onclick="enter()">
+                </td>
+                <td id ="big_btn" colspan="2">
+                    <input id ="input" type="button" value="C" onclick="del_all()">
+                </td>
+            </tr>
+        </table>
+
+
+
+
+        <script>
+
+            var num =0 ;
+            var symbol ;
+    
+            function btn_click(a)
+            {
+                if(resultFld.value == 0)
+                {
+                    resultFld.value="";
+                }
+                resultFld.value += a;
+            }
+
+            function operator(b)
+            {
+                var firstNum = (document.getElementById("resultFld").value);
+                num = firstNum;
+                symbol = b ;
+                return document.getElementById("resultFld").value = "";
+            }
+    
+            function enter()
+            {
+                var secNum = parseFloat(document.getElementById("resultFld").value);
+                var result ;
+                switch (symbol)
+                {
+
+                    case '+' : result = Number(num) + Number(secNum) ; 
+                    document.getElementById("resultFld").value = result; 
+                    break;
+
+                    case '-' : result = Number(num) - Number(secNum) ; 
+                    document.getElementById("resultFld").value = result;
+                    break;
+
+                    case '*' : result = Number(num) * Number(secNum) ; 
+                    document.getElementById("resultFld").value = result;
+                    break;
+
+                    case '/' : result = Number(num) / Number(secNum) ; 
+                    document.getElementById("resultFld").value = result;
+                    break;
+
+                    case '%' : result = Number(num) % Number(secNum) ; 
+                    document.getElementById("resultFld").value = result;
+                    break;
+
+                }        
+            }
+    
+            function del_all()
+            {
+                document.getElementById("resultFld").value = "";
+                num = 0;
+            }
+            
+        </script>
+
+
+    </body>
+</html>
