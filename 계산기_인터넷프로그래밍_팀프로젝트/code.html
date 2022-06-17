@@ -7,15 +7,8 @@
             {
                 color:black;
                 border: solid 1px;
-                height: 100px;
-                width: 100px
-            }
-            #big_btn
-            {
-                color:black;
-                border: solid 1px;
-                height: 100px;
-                width: 200px
+                height: 75px;
+                width: 100px;
             }
             #screen
             {
@@ -101,15 +94,29 @@
                     <input id ="input" type="button" value="+" onclick="operator('+')">
                 </td>
                 <td id ="common_btn">
-                    <input id ="input" type="button" value="%" onclick="operator('%')">
+                    <input id ="input" type="button" value="%" onclick="operator_percent('%')">
                 </td>
             </tr>
             <tr>
-                <td id ="big_btn" colspan="2">
-                    <input id ="input" type="button" value="calculate" onclick="enter()">
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="=" onclick="enter()">
                 </td>
-                <td id ="big_btn" colspan="2">
+                <td id ="common_btn">
                     <input id ="input" type="button" value="C" onclick="del_all()">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="CE" onclick="ce()">
+                </td>
+                <td id ="common_btn">
+                    <input id ="input" type="button" value="back" onclick="back()">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <a>
+                        연산자 : 
+                    </a>
+                    <input id = "operator_screen" type = "text" style="font-size : 50px; height : 75px; width : 260px">
                 </td>
             </tr>
         </table>
@@ -121,6 +128,8 @@
 
             var num =0 ;
             var symbol ;
+            var operator_sc;
+        
     
             function btn_click(a)
             {
@@ -128,15 +137,36 @@
                 {
                     resultFld.value="";
                 }
+    
                 resultFld.value += a;
             }
 
             function operator(b)
             {
+                operator_screen.value = b;
                 var firstNum = (document.getElementById("resultFld").value);
                 num = firstNum;
                 symbol = b ;
                 return document.getElementById("resultFld").value = "";
+            }
+
+            function operator_percent(c)
+            {
+                operator_screen.value = c;
+                var secNum = parseFloat(document.getElementById("resultFld").value);
+                var result ;
+                result = (Number(num)/100)*Number(secNum) ; 
+                document.getElementById("resultFld").value = result;
+            }
+
+            function ce()
+            {
+                resultFld.value = "";
+            }
+
+            function back()
+            {
+                resultFld.value = resultFld.value.slice(0, -1)
             }
     
             function enter()
